@@ -1,15 +1,15 @@
 # @Ahmedalaalotfy 
 CC=arm-none-eabi-
-CFLAGS=-mcpu=cortex-m4 -mthumb -gdwarf-2 -g
+CFLAGS=-mcpu=cortex-m3 -mthumb -gdwarf-2 -g
 INCS=-I .
 LIBS=
 SRC= $(wildcard *.c)
 OBJ= $(SRC:.c=.o)
-As= $(wildcard *.S)
+As= $(wildcard *.s)
 AsOBJ= $(As:.s=.o)
-Project_name=unit3_lab4_cortexM4
+Project_name=First_Term_Project1
 
-all: $(Project_name).bin
+all: $(Project_name).bin $(Project_name).hex
 	@echo "========Build is done========" 		
 	
 
@@ -24,11 +24,11 @@ $(Project_name).elf: $(OBJ) $(AsOBJ)
 $(Project_name).bin: $(Project_name).elf
 	$(CC)objcopy.exe -O binary $< $@ 
 
-$(ProjectName).hex:$(ProjectName).elf
+$(Project_name).hex:$(Project_name).elf
 	$(CC)objcopy.exe -O ihex $< $@
 
 clean_all: 
-	rm *.o *.elf *.bin	
+	rm *.o *.elf *.bin *.hex	
 	
 clean: 
 	rm *.elf *.bin	
