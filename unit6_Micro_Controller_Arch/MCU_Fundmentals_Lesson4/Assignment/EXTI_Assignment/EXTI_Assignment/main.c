@@ -95,7 +95,7 @@ int main(void)
 ISR(INT0_vect)
 {
 	PORTD |=(1<<5);
-	_delay_ms(100);
+	_delay_ms(1000);
 	
 
 	GIFR |=(1<<6);
@@ -103,7 +103,7 @@ ISR(INT0_vect)
 ISR(INT1_vect)
 {
 	PORTD |=(1<<6);
-	_delay_ms(100);
+	_delay_ms(1000);
 	
 
 	GIFR |=(1<<7);
@@ -112,7 +112,7 @@ ISR(INT1_vect)
 ISR(INT2_vect)
 {
 	PORTD |=(1<<7);
-	_delay_ms(100);
+	_delay_ms(1000);
 	
 
     GIFR |=(1<<5);
