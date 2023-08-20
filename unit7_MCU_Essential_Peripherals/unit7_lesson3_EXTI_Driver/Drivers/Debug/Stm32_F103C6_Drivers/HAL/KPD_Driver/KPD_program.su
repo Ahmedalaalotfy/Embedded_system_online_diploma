@@ -1,0 +1,2 @@
+KPD_program.c:21:6:KPD_GPIO_Init	16	static
+KPD_program.c:65:6:KPD_getValue	56	static
