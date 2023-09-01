@@ -1,0 +1,13 @@
+LCD_program.c:22:6:delay_ms	24	static
+LCD_program.c:28:6:LCD_init	8	static
+LCD_program.c:68:6:LCD_GPIO_Init	16	static
+LCD_program.c:131:6:LCD_sendCmnd	16	static
+LCD_program.c:169:6:LCD_sendChar	16	static
+LCD_program.c:207:13:writeHalfPort	16	static
+LCD_program.c:246:6:LCD_sendString	24	static
+LCD_program.c:260:6:LCD_clear	8	static
+LCD_program.c:268:6:LCD_shift	16	static
+LCD_program.c:283:6:LCD_goToSpecificPosition	16	static
+LCD_program.c:302:6:LCD_writeNumber	24	static
+LCD_program.c:326:6:LCD_Custom_Char	24	static
+LCD_program.c:338:6:LCD_SaveIn_CGRAM	8	static
