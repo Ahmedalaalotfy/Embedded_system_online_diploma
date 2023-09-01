@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Stm32_F103C6_EXTI_Driver.c:40:16:Enable_NVIC	16	static
 Stm32_F103C6_EXTI_Driver.c:84:16:Disable_NVIC	16	static
 Stm32_F103C6_EXTI_Driver.c:127:6:Update_EXTI	24	static
@@ -11,3 +12,18 @@ Stm32_F103C6_EXTI_Driver.c:287:6:EXTI3_IRQHandler	8	static
 Stm32_F103C6_EXTI_Driver.c:293:6:EXTI4_IRQHandler	8	static
 Stm32_F103C6_EXTI_Driver.c:299:6:EXTI9_5_IRQHandler	8	static
 Stm32_F103C6_EXTI_Driver.c:308:6:EXTI15_10_IRQHandler	8	static
+=======
+Stm32_F103C6_EXTI_Driver.c:40:16:Enable_NVIC	16	static
+Stm32_F103C6_EXTI_Driver.c:84:16:Disable_NVIC	16	static
+Stm32_F103C6_EXTI_Driver.c:127:6:Update_EXTI	24	static
+Stm32_F103C6_EXTI_Driver.c:204:6:MCAL_EXTI_GPIO_DeInit	4	static
+Stm32_F103C6_EXTI_Driver.c:237:6:MCAL_EXTI_GPIO_Init	16	static
+Stm32_F103C6_EXTI_Driver.c:252:6:MCAL_EXTI_GPIO_Update	16	static
+Stm32_F103C6_EXTI_Driver.c:267:6:EXTI0_IRQHandler	8	static
+Stm32_F103C6_EXTI_Driver.c:275:6:EXTI1_IRQHandler	8	static
+Stm32_F103C6_EXTI_Driver.c:281:6:EXTI2_IRQHandler	8	static
+Stm32_F103C6_EXTI_Driver.c:287:6:EXTI3_IRQHandler	8	static
+Stm32_F103C6_EXTI_Driver.c:293:6:EXTI4_IRQHandler	8	static
+Stm32_F103C6_EXTI_Driver.c:299:6:EXTI9_5_IRQHandler	8	static
+Stm32_F103C6_EXTI_Driver.c:308:6:EXTI15_10_IRQHandler	8	static
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69

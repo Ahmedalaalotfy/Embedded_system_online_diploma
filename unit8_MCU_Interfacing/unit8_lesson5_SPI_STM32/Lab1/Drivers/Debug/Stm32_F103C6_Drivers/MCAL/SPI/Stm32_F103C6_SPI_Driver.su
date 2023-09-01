@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Stm32_F103C6_SPI_Driver.c:59:6:MCAL_SPI_Init	24	static
 Stm32_F103C6_SPI_Driver.c:143:6:MCAL_SPI_DeInit	16	static
 Stm32_F103C6_SPI_Driver.c:166:6:MCAL_SPI_SendData	24	static
@@ -6,3 +7,13 @@ Stm32_F103C6_SPI_Driver.c:203:6:MCAL_SPI_TX_RX	24	static
 Stm32_F103C6_SPI_Driver.c:227:6:MCAL_SPI_GPIO_Set_Pins	32	static
 Stm32_F103C6_SPI_Driver.c:419:6:SPI1_IRQHandler	16	static
 Stm32_F103C6_SPI_Driver.c:430:6:SPI2_IRQHandler	16	static
+=======
+Stm32_F103C6_SPI_Driver.c:59:6:MCAL_SPI_Init	24	static
+Stm32_F103C6_SPI_Driver.c:143:6:MCAL_SPI_DeInit	16	static
+Stm32_F103C6_SPI_Driver.c:166:6:MCAL_SPI_SendData	24	static
+Stm32_F103C6_SPI_Driver.c:184:6:MCAL_SPI_ReceiveData	24	static
+Stm32_F103C6_SPI_Driver.c:203:6:MCAL_SPI_TX_RX	24	static
+Stm32_F103C6_SPI_Driver.c:227:6:MCAL_SPI_GPIO_Set_Pins	32	static
+Stm32_F103C6_SPI_Driver.c:419:6:SPI1_IRQHandler	16	static
+Stm32_F103C6_SPI_Driver.c:430:6:SPI2_IRQHandler	16	static
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69

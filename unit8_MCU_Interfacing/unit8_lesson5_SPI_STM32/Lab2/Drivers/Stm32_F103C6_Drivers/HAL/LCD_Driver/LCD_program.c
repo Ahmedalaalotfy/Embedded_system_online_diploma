@@ -139,9 +139,15 @@ void LCD_sendCmnd(uint8_t Cmnd)
 
 #if LCD_MODE == LCD_8_BIT_MODE
 	MCAL_GPIO_WritePort(LCD_DATA_PORT, Cmnd);
+<<<<<<< HEAD
 
 	/* Enable Pulse *//* H => L */
 	MCAL_GPIO_WritePin(LCD_EN_PORT,LCD_EN_PIN, GPIO_PIN_SET);
+=======
+
+	/* Enable Pulse *//* H => L */
+	MCAL_GPIO_WritePin(LCD_EN_PORT,LCD_EN_PIN, GPIO_PIN_SET);
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
 	delay_ms(1);
 	MCAL_GPIO_WritePin(LCD_EN_PORT,LCD_EN_PIN, GPIO_PIN_RESET);
 
@@ -246,6 +252,7 @@ static void writeHalfPort(uint8_t Value)
 void LCD_sendString(uint8_t *String)
 
 {
+<<<<<<< HEAD
 	if(String != NULL)
 	{
 		uint8_t stringLength = 0;
@@ -254,6 +261,16 @@ void LCD_sendString(uint8_t *String)
 			LCD_sendChar(String[stringLength]);
 			++stringLength;
 		}
+=======
+	if(String != NULL)
+	{
+		uint8_t stringLength = 0;
+		while(String[stringLength] != '\0')
+		{
+			LCD_sendChar(String[stringLength]);
+			++stringLength;
+		}
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
 	}
 }
 
@@ -299,6 +316,7 @@ void LCD_goToSpecificPosition(uint8_t LineNumber, uint8_t Position)
 	}
 }
 
+<<<<<<< HEAD
 void LCD_writeNumber(uint32_t number)
 {
 	uint32_t Local_reversed = 1;
@@ -425,3 +443,131 @@ void LCD_SaveIn_CGRAM(void)
 }
 
 
+=======
+void LCD_writeNumber(uint32_t number)
+{
+	uint32_t Local_reversed = 1;
+	if (number == 0)
+	{
+		LCD_sendChar('0');
+	}
+	else
+	{
+		// Reverse Number
+		while (number != 0)
+		{
+			Local_reversed = Local_reversed*10 + (number%10);
+			number /= 10;
+		}
+
+		do
+		{
+			LCD_sendChar((Local_reversed%10)+'0');
+			Local_reversed /= 10;
+		}while (Local_reversed != 1);
+	}
+}
+
+void LCD_Custom_Char (uint8_t loc,uint8_t *msg)
+{
+	uint8_t i;
+	if(loc<8)
+	{
+		LCD_sendCmnd(0x40 + (loc*8));  /* Command 0x40 and onwards forces
+                                       the device to point CGRAM address */
+		for(i=0;i<8;i++)  /* Write 8 byte for generation of 1 character */
+			LCD_sendChar(msg[i]);
+	}
+}
+
+void LCD_SaveIn_CGRAM(void)
+{
+	LCD_sendCmnd(0b01000000);  //0x40   0b 0100 0000
+
+	//   save Person
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b00100);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b10101);
+	LCD_sendChar(0b00100);
+	LCD_sendChar(0b01010);
+	LCD_sendChar(0b01010);
+
+	//   save smile
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b01010);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b00000);
+
+	//   save LOCK
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b11111);
+	LCD_sendChar(0b11011);
+	LCD_sendChar(0b11011);
+	LCD_sendChar(0b11111);
+	LCD_sendChar(0b00000);
+
+
+	//   save Heart
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b01010);
+	LCD_sendChar(0b10101);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b00100);
+	LCD_sendChar(0b00000);
+
+
+	///  SAVE �
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B11111);
+	LCD_sendChar(0B00000);
+
+	///  SAVE �
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B01110);
+	LCD_sendChar(0B10001);
+	LCD_sendChar(0B01110);
+
+	///  SAVE  �
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B01110);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B11111);
+	LCD_sendChar(0B00000);
+
+
+	///  SAVE �
+	LCD_sendChar(0b00110);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B01110);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B00100);
+
+}
+
+
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69

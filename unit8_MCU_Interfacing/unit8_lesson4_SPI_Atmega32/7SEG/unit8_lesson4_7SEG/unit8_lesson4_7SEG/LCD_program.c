@@ -69,11 +69,19 @@ void LCD_sendCmnd(u8 Cmnd)
 	// set RW pin = 0 ( write )
 	DIO_setPinValue(LCD_RW_PORT,LCD_RW_PIN,DIO_PIN_LOW);
 	
+<<<<<<< HEAD
 	#if LCD_MODE == LCD_8_BIT_MODE
 	DIO_setPortValue(LCD_DATA_PORT,Cmnd);
 	/* Enable Pulse *//* H => L */
 	DIO_setPinValue(LCD_EN_PORT,LCD_EN_PIN,DIO_PIN_HIGH);
 	_delay_ms(1);
+=======
+	#if LCD_MODE == LCD_8_BIT_MODE
+	DIO_setPortValue(LCD_DATA_PORT,Cmnd);
+	/* Enable Pulse *//* H => L */
+	DIO_setPinValue(LCD_EN_PORT,LCD_EN_PIN,DIO_PIN_HIGH);
+	_delay_ms(1);
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
 	DIO_setPinValue(LCD_EN_PORT,LCD_EN_PIN,DIO_PIN_LOW);
 	
 	#elif LCD_MODE == LCD_4_BIT_MODE
@@ -106,6 +114,7 @@ void LCD_sendChar(u8 Data)
 	// set RW pin = 0 ( write )
 	DIO_setPinValue(LCD_RW_PORT,LCD_RW_PIN,DIO_PIN_LOW);
 	
+<<<<<<< HEAD
 	#if LCD_MODE == LCD_8_BIT_MODE
 	
 	DIO_setPortValue(LCD_DATA_PORT,data);
@@ -113,6 +122,15 @@ void LCD_sendChar(u8 Data)
 	/* Enable Pulse *//* H => L */
 	DIO_setPinValue(LCD_EN_PORT,LCD_EN_PIN,DIO_PIN_HIGH);
 	_delay_ms(1);
+=======
+	#if LCD_MODE == LCD_8_BIT_MODE
+	
+	DIO_setPortValue(LCD_DATA_PORT,data);
+	
+	/* Enable Pulse *//* H => L */
+	DIO_setPinValue(LCD_EN_PORT,LCD_EN_PIN,DIO_PIN_HIGH);
+	_delay_ms(1);
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
 	DIO_setPinValue(LCD_EN_PORT,LCD_EN_PIN,DIO_PIN_LOW);
 	
 	#elif LCD_MODE == LCD_4_BIT_MODE
@@ -178,6 +196,7 @@ static void writeHalfPort(u8 Value)
 void LCD_sendString(u8 *String)
 
 {
+<<<<<<< HEAD
 	if(String != NULL)
 	{
 		u8 stringLength = 0;
@@ -186,6 +205,16 @@ void LCD_sendString(u8 *String)
 			LCD_sendChar(String[stringLength]);
 			++stringLength;
 		}
+=======
+	if(String != NULL)
+	{
+		u8 stringLength = 0;
+		while(String[stringLength] != '\0')
+		{
+			LCD_sendChar(String[stringLength]);
+			++stringLength;
+		}
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
 	}
 }
 
@@ -231,6 +260,7 @@ void LCD_goToSpecificPosition(u8 LineNumber, u8 Position)
 	}
 }
 
+<<<<<<< HEAD
 void LCD_writeNumber(u32 number)
 {
 	u32 Local_reversed = 1;
@@ -357,3 +387,131 @@ void LCD_SaveIn_CGRAM(void)
 }
 
 
+=======
+void LCD_writeNumber(u32 number)
+{
+	u32 Local_reversed = 1;
+	if (number == 0)
+	{
+		LCD_sendChar('0');
+	}
+	else
+	{
+		// Reverse Number
+		while (number != 0)
+		{
+			Local_reversed = Local_reversed*10 + (number%10);
+			number /= 10;
+		}
+		
+		do
+		{
+			LCD_sendChar((Local_reversed%10)+'0');
+			Local_reversed /= 10;
+		}while (Local_reversed != 1);
+	}
+}
+
+void LCD_Custom_Char (u8 loc,u8 *msg)
+{
+    u8 i;
+    if(loc<8)
+    {
+     LCD_sendCmnd(0x40 + (loc*8));  /* Command 0x40 and onwards forces 
+                                       the device to point CGRAM address */
+       for(i=0;i<8;i++)  /* Write 8 byte for generation of 1 character */
+           LCD_sendChar(msg[i]);      
+    }   
+}
+
+void LCD_SaveIn_CGRAM(void)
+{
+	LCD_sendCmnd(0b01000000);  //0x40   0b 0100 0000
+
+	//   save Person
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b00100);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b10101);
+	LCD_sendChar(0b00100);
+	LCD_sendChar(0b01010);
+	LCD_sendChar(0b01010);
+
+	//   save smile
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b01010);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b00000);
+
+	//   save LOCK
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b11111);
+	LCD_sendChar(0b11011);
+	LCD_sendChar(0b11011);
+	LCD_sendChar(0b11111);
+	LCD_sendChar(0b00000);
+
+
+	//   save Heart
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b00000);
+	LCD_sendChar(0b01010);
+	LCD_sendChar(0b10101);
+	LCD_sendChar(0b10001);
+	LCD_sendChar(0b01110);
+	LCD_sendChar(0b00100);
+	LCD_sendChar(0b00000);
+
+
+	///  SAVE Ï
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B11111);
+	LCD_sendChar(0B00000);
+
+	///  SAVE ã
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B01110);
+	LCD_sendChar(0B10001);
+	LCD_sendChar(0B01110);
+
+	///  SAVE  Í
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B01110);
+	LCD_sendChar(0B00001);
+	LCD_sendChar(0B11111);
+	LCD_sendChar(0B00000);
+
+
+	///  SAVE Ã
+	LCD_sendChar(0b00110);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B01110);
+	LCD_sendChar(0B00000);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B00100);
+	LCD_sendChar(0B00100);
+
+}
+
+
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69

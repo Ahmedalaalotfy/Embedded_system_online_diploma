@@ -5,6 +5,7 @@
  * Author : Ahmedalaalotfy
  */ 
 
+<<<<<<< HEAD
 #define F_CPU 1000000UL
 #include <util/delay.h>
 
@@ -14,6 +15,17 @@
 #include   "ATMEGA32_REG.h"
 
 /* MCAL */
+=======
+#define F_CPU 1000000UL
+#include <util/delay.h>
+
+/* UTILES_LIB */
+#include   "STD_TYPES.h"
+#include   "BIT_MATH.h"
+#include   "ATMEGA32_REG.h"
+
+/* MCAL */
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
 #include "SPI_interface.h"
 #include "DIO_interface.h"
 

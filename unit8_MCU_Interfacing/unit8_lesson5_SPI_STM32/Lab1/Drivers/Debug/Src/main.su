@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 main.c:35:6:clock_init	4	static
 main.c:49:6:Ahmed_UART_IRQ_CallBack	8	static
 main.c:64:6:wait	24	static
 main.c:71:5:main	56	static
+=======
+main.c:35:6:clock_init	4	static
+main.c:49:6:Ahmed_UART_IRQ_CallBack	8	static
+main.c:64:6:wait	24	static
+main.c:71:5:main	56	static
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69

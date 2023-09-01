@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 KPD_program.c:21:6:KPD_GPIO_Init	16	static
 KPD_program.c:68:6:KPD_getValue	56	static
+=======
+KPD_program.c:21:6:KPD_GPIO_Init	16	static
+KPD_program.c:68:6:KPD_getValue	56	static
+>>>>>>> bd560d5b990063eaea5362409ab455504410aa69
