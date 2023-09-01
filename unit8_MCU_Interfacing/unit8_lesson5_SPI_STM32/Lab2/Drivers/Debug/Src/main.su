@@ -1,0 +1,5 @@
+main.c:35:6:clock_init	4	static
+main.c:49:6:Ahmed_SPI1_IRQ_CallBack	16	static
+main.c:64:6:Ahmed_UART_IRQ_CallBack	4	static
+main.c:79:6:wait	24	static
+main.c:86:5:main	56	static
