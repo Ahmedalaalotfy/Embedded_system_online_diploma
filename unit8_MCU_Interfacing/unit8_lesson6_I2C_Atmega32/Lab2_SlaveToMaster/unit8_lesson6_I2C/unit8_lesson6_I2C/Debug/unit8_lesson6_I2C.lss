@@ -1,0 +1,322 @@
+
+unit8_lesson6_I2C.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000196  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000001ea  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000001ea  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000021c  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000e8  00000000  00000000  00000258  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000b14  00000000  00000000  00000340  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000006ec  00000000  00000000  00000e54  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000893  00000000  00000000  00001540  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000018c  00000000  00000000  00001dd4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000575  00000000  00000000  00001f60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000005e7  00000000  00000000  000024d5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000b8  00000000  00000000  00002abc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 60 00 	call	0xc0	; 0xc0 <main>
+  64:	0c 94 c9 00 	jmp	0x192	; 0x192 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <DIO_setPortDirection>:
+
+/* PORTS APIS*/ 
+void DIO_setPortDirection(u8 PortId , u8 PortDirection ) 
+
+{
+	if ( (PortId<=3) && ( (DIO_PORT_INPUT == PortDirection) || (DIO_PORT_OUTPUT == PortDirection) ) ) 
+  6c:	84 30       	cpi	r24, 0x04	; 4
+  6e:	38 f5       	brcc	.+78     	; 0xbe <DIO_setPortDirection+0x52>
+  70:	9f ef       	ldi	r25, 0xFF	; 255
+  72:	96 0f       	add	r25, r22
+  74:	9e 3f       	cpi	r25, 0xFE	; 254
+  76:	18 f1       	brcs	.+70     	; 0xbe <DIO_setPortDirection+0x52>
+	{
+		switch (PortId) 
+  78:	81 30       	cpi	r24, 0x01	; 1
+  7a:	69 f0       	breq	.+26     	; 0x96 <DIO_setPortDirection+0x2a>
+  7c:	28 f0       	brcs	.+10     	; 0x88 <DIO_setPortDirection+0x1c>
+  7e:	82 30       	cpi	r24, 0x02	; 2
+  80:	89 f0       	breq	.+34     	; 0xa4 <DIO_setPortDirection+0x38>
+  82:	83 30       	cpi	r24, 0x03	; 3
+  84:	b1 f0       	breq	.+44     	; 0xb2 <DIO_setPortDirection+0x46>
+  86:	08 95       	ret
+		{
+			case 0 : // PORTA 
+			if (DIO_PORT_OUTPUT == PortDirection)
+  88:	6f 3f       	cpi	r22, 0xFF	; 255
+  8a:	19 f4       	brne	.+6      	; 0x92 <DIO_setPortDirection+0x26>
+			{
+				DDRA = 0xff ; 
+  8c:	8f ef       	ldi	r24, 0xFF	; 255
+  8e:	8a bb       	out	0x1a, r24	; 26
+  90:	08 95       	ret
+			}
+			else 
+			{
+				DDRA = 0x00 ; 
+  92:	1a ba       	out	0x1a, r1	; 26
+  94:	08 95       	ret
+			}
+			break ;
+			
+			case 1: // PORTB
+			if (DIO_PORT_OUTPUT == PortDirection)
+  96:	6f 3f       	cpi	r22, 0xFF	; 255
+  98:	19 f4       	brne	.+6      	; 0xa0 <DIO_setPortDirection+0x34>
+			{
+				DDRB= 0xff ; 
+  9a:	8f ef       	ldi	r24, 0xFF	; 255
+  9c:	87 bb       	out	0x17, r24	; 23
+  9e:	08 95       	ret
+			}
+			else 
+			{
+				DDRB = 0x00 ; 
+  a0:	17 ba       	out	0x17, r1	; 23
+  a2:	08 95       	ret
+			}
+			break ;
+			
+			case 2 : // PORTC 
+			if (DIO_PORT_OUTPUT == PortDirection)
+  a4:	6f 3f       	cpi	r22, 0xFF	; 255
+  a6:	19 f4       	brne	.+6      	; 0xae <DIO_setPortDirection+0x42>
+			{
+				DDRC = 0xff ; 
+  a8:	8f ef       	ldi	r24, 0xFF	; 255
+  aa:	84 bb       	out	0x14, r24	; 20
+  ac:	08 95       	ret
+			}
+			else 
+			{
+				DDRC = 0x00 ; 
+  ae:	14 ba       	out	0x14, r1	; 20
+  b0:	08 95       	ret
+			}
+			break ;
+			
+			case 3 : // PORTD 
+			if (DIO_PORT_OUTPUT == PortDirection)
+  b2:	6f 3f       	cpi	r22, 0xFF	; 255
+  b4:	19 f4       	brne	.+6      	; 0xbc <DIO_setPortDirection+0x50>
+			{
+				DDRD = 0xff ; 
+  b6:	8f ef       	ldi	r24, 0xFF	; 255
+  b8:	81 bb       	out	0x11, r24	; 17
+  ba:	08 95       	ret
+			}
+			else 
+			{
+				DDRD = 0x00 ; 
+  bc:	11 ba       	out	0x11, r1	; 17
+  be:	08 95       	ret
+
+000000c0 <main>:
+#include "TWI_interface.h"
+#include "DIO_interface.h"
+
+
+int main(void)
+{
+  c0:	cf 93       	push	r28
+  c2:	df 93       	push	r29
+  c4:	1f 92       	push	r1
+  c6:	cd b7       	in	r28, 0x3d	; 61
+  c8:	de b7       	in	r29, 0x3e	; 62
+	DIO_setPortDirection(PORTA,DIO_PORT_OUTPUT);
+  ca:	8b b3       	in	r24, 0x1b	; 27
+  cc:	6f ef       	ldi	r22, 0xFF	; 255
+  ce:	0e 94 36 00 	call	0x6c	; 0x6c <DIO_setPortDirection>
+    TWI_initMaster(); 
+  d2:	0e 94 82 00 	call	0x104	; 0x104 <TWI_initMaster>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  d6:	2f e3       	ldi	r18, 0x3F	; 63
+  d8:	8d e0       	ldi	r24, 0x0D	; 13
+  da:	93 e0       	ldi	r25, 0x03	; 3
+  dc:	21 50       	subi	r18, 0x01	; 1
+  de:	80 40       	sbci	r24, 0x00	; 0
+  e0:	90 40       	sbci	r25, 0x00	; 0
+  e2:	e1 f7       	brne	.-8      	; 0xdc <main+0x1c>
+  e4:	00 c0       	rjmp	.+0      	; 0xe6 <main+0x26>
+  e6:	00 00       	nop
+	
+   unsigned char ch ;
+   while (1)
+   {
+	 _delay_ms(1000);
+	 TWI_sendStartCondition();
+  e8:	0e 94 91 00 	call	0x122	; 0x122 <TWI_sendStartCondition>
+	 TWI_sendSlaveAddWithRead(0b01010000);
+  ec:	80 e5       	ldi	r24, 0x50	; 80
+  ee:	0e 94 a6 00 	call	0x14c	; 0x14c <TWI_sendSlaveAddWithRead>
+	 TWI_readMasterDataByte(&ch);
+  f2:	ce 01       	movw	r24, r28
+  f4:	01 96       	adiw	r24, 0x01	; 1
+  f6:	0e 94 bb 00 	call	0x176	; 0x176 <TWI_readMasterDataByte>
+	 PORTA = ch ; 
+  fa:	89 81       	ldd	r24, Y+1	; 0x01
+  fc:	8b bb       	out	0x1b, r24	; 27
+	 TWI_sendStopCondition();
+  fe:	0e 94 9f 00 	call	0x13e	; 0x13e <TWI_sendStopCondition>
+ 102:	e9 cf       	rjmp	.-46     	; 0xd6 <main+0x16>
+
+00000104 <TWI_initMaster>:
+	while (0==GET_BIT(TWCR,7));
+	
+	// Check ACK == Master Transmit Data ACK
+	while((TWSR & 0xF8) != 0x28);
+	
+}
+ 104:	81 b1       	in	r24, 0x01	; 1
+ 106:	8e 7f       	andi	r24, 0xFE	; 254
+ 108:	81 b9       	out	0x01, r24	; 1
+ 10a:	81 b1       	in	r24, 0x01	; 1
+ 10c:	8d 7f       	andi	r24, 0xFD	; 253
+ 10e:	81 b9       	out	0x01, r24	; 1
+ 110:	88 e4       	ldi	r24, 0x48	; 72
+ 112:	80 b9       	out	0x00, r24	; 0
+ 114:	86 b7       	in	r24, 0x36	; 54
+ 116:	80 64       	ori	r24, 0x40	; 64
+ 118:	86 bf       	out	0x36, r24	; 54
+ 11a:	86 b7       	in	r24, 0x36	; 54
+ 11c:	84 60       	ori	r24, 0x04	; 4
+ 11e:	86 bf       	out	0x36, r24	; 54
+ 120:	08 95       	ret
+
+00000122 <TWI_sendStartCondition>:
+ 122:	86 b7       	in	r24, 0x36	; 54
+ 124:	80 62       	ori	r24, 0x20	; 32
+ 126:	86 bf       	out	0x36, r24	; 54
+ 128:	86 b7       	in	r24, 0x36	; 54
+ 12a:	80 68       	ori	r24, 0x80	; 128
+ 12c:	86 bf       	out	0x36, r24	; 54
+ 12e:	06 b6       	in	r0, 0x36	; 54
+ 130:	07 fe       	sbrs	r0, 7
+ 132:	fd cf       	rjmp	.-6      	; 0x12e <TWI_sendStartCondition+0xc>
+ 134:	81 b1       	in	r24, 0x01	; 1
+ 136:	88 7f       	andi	r24, 0xF8	; 248
+ 138:	88 30       	cpi	r24, 0x08	; 8
+ 13a:	e1 f7       	brne	.-8      	; 0x134 <TWI_sendStartCondition+0x12>
+ 13c:	08 95       	ret
+
+0000013e <TWI_sendStopCondition>:
+ 13e:	86 b7       	in	r24, 0x36	; 54
+ 140:	80 61       	ori	r24, 0x10	; 16
+ 142:	86 bf       	out	0x36, r24	; 54
+ 144:	86 b7       	in	r24, 0x36	; 54
+ 146:	80 68       	ori	r24, 0x80	; 128
+ 148:	86 bf       	out	0x36, r24	; 54
+ 14a:	08 95       	ret
+
+0000014c <TWI_sendSlaveAddWithRead>:
+ 14c:	88 23       	and	r24, r24
+ 14e:	94 f0       	brlt	.+36     	; 0x174 <TWI_sendSlaveAddWithRead+0x28>
+ 150:	88 0f       	add	r24, r24
+ 152:	83 b9       	out	0x03, r24	; 3
+ 154:	83 b1       	in	r24, 0x03	; 3
+ 156:	81 60       	ori	r24, 0x01	; 1
+ 158:	83 b9       	out	0x03, r24	; 3
+ 15a:	86 b7       	in	r24, 0x36	; 54
+ 15c:	8f 7d       	andi	r24, 0xDF	; 223
+ 15e:	86 bf       	out	0x36, r24	; 54
+ 160:	86 b7       	in	r24, 0x36	; 54
+ 162:	80 68       	ori	r24, 0x80	; 128
+ 164:	86 bf       	out	0x36, r24	; 54
+ 166:	06 b6       	in	r0, 0x36	; 54
+ 168:	07 fe       	sbrs	r0, 7
+ 16a:	fd cf       	rjmp	.-6      	; 0x166 <TWI_sendSlaveAddWithRead+0x1a>
+ 16c:	81 b1       	in	r24, 0x01	; 1
+ 16e:	88 7f       	andi	r24, 0xF8	; 248
+ 170:	80 34       	cpi	r24, 0x40	; 64
+ 172:	e1 f7       	brne	.-8      	; 0x16c <TWI_sendSlaveAddWithRead+0x20>
+ 174:	08 95       	ret
+
+00000176 <TWI_readMasterDataByte>:
+
+void TWI_readMasterDataByte(u8* returnedData)
+{
+ 176:	fc 01       	movw	r30, r24
+	// Clear Flag To Start Current Job
+	SET_BIT(TWCR,7);
+ 178:	96 b7       	in	r25, 0x36	; 54
+ 17a:	90 68       	ori	r25, 0x80	; 128
+ 17c:	96 bf       	out	0x36, r25	; 54
+	
+	// Wait For Flag
+	while (0==GET_BIT(TWCR,7));
+ 17e:	06 b6       	in	r0, 0x36	; 54
+ 180:	07 fe       	sbrs	r0, 7
+ 182:	fd cf       	rjmp	.-6      	; 0x17e <TWI_readMasterDataByte+0x8>
+	
+	// Check ACK == Master Receiced Data ACK
+	while((TWSR & 0xF8) != 0x50);
+ 184:	91 b1       	in	r25, 0x01	; 1
+ 186:	98 7f       	andi	r25, 0xF8	; 248
+ 188:	90 35       	cpi	r25, 0x50	; 80
+ 18a:	e1 f7       	brne	.-8      	; 0x184 <TWI_readMasterDataByte+0xe>
+	
+	// Read Data From Data Register
+	*returnedData = TWDR ; 
+ 18c:	83 b1       	in	r24, 0x03	; 3
+ 18e:	80 83       	st	Z, r24
+ 190:	08 95       	ret
+
+00000192 <_exit>:
+ 192:	f8 94       	cli
+
+00000194 <__stop_program>:
+ 194:	ff cf       	rjmp	.-2      	; 0x194 <__stop_program>
