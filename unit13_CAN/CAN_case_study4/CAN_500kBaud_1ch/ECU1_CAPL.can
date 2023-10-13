@@ -1,0 +1,34 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer send_timer ; 
+  const int timerPeriod = 100 ; 
+  message ACC_CMD_message Acc_CMD ; 
+  int variable_ACC = 0 ; 
+}
+
+on start 
+{
+  write("Eng. Ahmedalaalotfy") ; 
+  setTimer(send_timer,timerPeriod);
+}
+
+on message Speed_Val_Message 
+{
+ write("ECU1: Recieved from ECU2");  
+}
+
+on timer send_timer
+{
+    write("Eng. Ahmedalaalotfy") ; 
+  
+   variable_ACC = @sysvar::ACC_System_VAL ; 
+   Acc_CMD.ACC_ON.phys = variable_ACC ; 
+   output(Acc_CMD) ; 
+  setTimer(send_timer,timerPeriod); 
+}
