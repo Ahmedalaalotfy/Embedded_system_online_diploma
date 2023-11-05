@@ -1,0 +1,3 @@
+I2C_Slave_EEPROM.c:11:6:EEPROM_Init	48	static
+I2C_Slave_EEPROM.c:34:9:EEPROM_Write_Nbytes	296	static
+I2C_Slave_EEPROM.c:53:9:EEPROM_Read_byte	40	static
